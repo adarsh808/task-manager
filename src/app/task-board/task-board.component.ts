@@ -29,16 +29,19 @@ export class TaskBoardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.taskService.listTasks().subscribe(
-      (taskList) => {
-        this.tasks = taskList.tasks;
-        this.filteredTask = this.tasks;
-        this.spinner.hide();
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.getTaskList();
+  }
+  getTaskList() {
+     this.taskService.listTasks().subscribe(
+       (taskList) => {
+         this.tasks = taskList.tasks;
+         this.filteredTask = this.tasks;
+         this.spinner.hide();
+       },
+       (error) => {
+         console.log(error);
+       }
+     );
   }
   openModal(task) {
     this.modalDialog = `Are you sure to delete Task#${task.id}`;
@@ -71,13 +74,14 @@ export class TaskBoardComponent implements OnInit {
   }
   searchList(searchTerm) {
     this.filteredTask = this.tasks.filter((task) => {
-
-     return task.id.includes(searchTerm) ||
+      return (
+        task.id.includes(searchTerm) ||
         (task.assigned_name &&
           task.assigned_name
             .toLowerCase()
             .includes(searchTerm.toLowerCase())) ||
-        task.message.toLowerCase().includes(searchTerm.toLowerCase());
+        task.message.toLowerCase().includes(searchTerm.toLowerCase())
+      );
     });
   }
 }

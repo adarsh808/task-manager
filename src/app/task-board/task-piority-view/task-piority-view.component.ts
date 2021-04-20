@@ -23,22 +23,29 @@ export class TaskPiorityViewComponent implements OnInit {
     ev.preventDefault();
   }
   drop(ev) {
-    let data = ev.dataTransfer.getData("text");
     let parent = ev.target.closest(".priority-column");
-    parent.appendChild(document.getElementById(data));
+    let targetPriority = parent.getAttribute("data-priority");
+    this.taskList = this.taskList.map((task) => {
+      if (this.draggedTask.id == task.id) {
+        task.priority = targetPriority;
+      }
+      return task;
+    })
     let formData = new FormData();
     for (let i in this.draggedTask) {
       formData.append(i, this.draggedTask[i]);
     }
-    formData.append("priority", parent.getAttribute("data-priority"));
+    formData.append("priority", targetPriority);
     formData.append("taskid", this.draggedTask.id);
-    this.taskService.updateTask(formData).subscribe((res) => {
-    }, (err) => {
-        console.log(err)
-    });
+    this.taskService.updateTask(formData).subscribe(
+      (res) => {
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
   drag(ev, task) {
     this.draggedTask = task;
-    ev.dataTransfer.setData("text", ev.target.id);
   }
 }
