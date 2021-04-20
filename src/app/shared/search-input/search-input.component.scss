@@ -1,0 +1,12 @@
+ .search-bar{
+     position: relative;
+     input {
+    width: 100%;
+    text-overflow: ellipsis;
+  }
+  i {
+    position: absolute;
+    right: 1%;
+    top: 25%;
+  }
+}

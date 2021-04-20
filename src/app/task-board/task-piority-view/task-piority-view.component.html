@@ -1,0 +1,77 @@
+<div class="priority-task-view">
+  <div class="row">
+    <div
+      class="col-sm-4 priority-column"
+      [attr.data-priority]="3"
+      (drop)="drop($event)"
+      (dragover)="allowDrop($event)"
+    >
+      <h4>High priority</h4>
+      <hr />
+
+      <div *ngFor="let task of taskList">
+        <div
+          id="{{ task.id }}"
+          draggable="true"
+          (dragstart)="drag($event, task)"
+          class="mb-4"
+          *ngIf="task.priority == 3"
+        >
+          <app-task-card
+            (openModal)="openModal($event)"
+            [task]="task"
+          ></app-task-card>
+        </div>
+      </div>
+    </div>
+    <div
+      (drop)="drop($event)"
+      (dragover)="allowDrop($event)"
+      class="col-sm-4 priority-column"
+      [attr.data-priority]="2"
+    >
+      <h4>Medium priority</h4>
+      <hr />
+
+      <div *ngFor="let task of taskList">
+        <div
+          id="{{ task.id }}"
+          class="mb-4"
+          draggable="true"
+          (dragstart)="drag($event, task)"
+          *ngIf="task.priority == 2"
+        >
+          <app-task-card
+            (openModal)="openModal($event)"
+            [task]="task"
+          ></app-task-card>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="col-sm-4 priority-column"
+      [attr.data-priority]="1"
+      (drop)="drop($event)"
+      (dragover)="allowDrop($event)"
+    >
+      <h4>Low priority</h4>
+      <hr />
+
+      <div *ngFor="let task of taskList">
+        <div
+          id="{{ task.id }}"
+          class="mb-4"
+          draggable="true"
+          (dragstart)="drag($event, task)"
+          *ngIf="task.priority == 1"
+        >
+          <app-task-card
+            (openModal)="openModal($event)"
+            [task]="task"
+          ></app-task-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

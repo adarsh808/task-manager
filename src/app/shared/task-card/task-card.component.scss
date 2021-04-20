@@ -1,0 +1,12 @@
+.card{
+    width:100%;
+
+    .card-text{
+    border-top: 1px solid lightgrey;
+    border-bottom:1px solid lightgrey ;
+    padding: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
+}

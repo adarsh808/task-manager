@@ -1,0 +1,14 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Task: #{{task.id}}</h5>
+            <h6 class="card-subtitle mb-4 text-muted d-inline-block">Assigned to:</h6><span class="ml-2">{{task.assigned_name}}</span><br>
+        <h6 class="card-subtitle mb-4 text-muted d-inline-block">Due Date:</h6><span class="ml-2">{{task.due_date?.slice(0,10)}}</span><br>
+        <h6 class="card-subtitle text-muted mb-4 d-inline-block">Priority:</h6><span class="ml-2">{{priorityList[task.priority]}}</span>
+    <p class="card-text">{{task.message}}</p>
+    <a [routerLink]="['/view-task',task.id]" class="card-link">View Task</a>
+    <div class="float-right">
+    <a (click)="updateTask()" class="card-link"> <i class="fa fa-edit fa-md pl-2"></i> </a>
+    <a (click)="deleteTask()" class="card-link"><i class="fa fa-trash fa-md pl-2" ></i></a>
+    </div>
+  </div>
+</div>

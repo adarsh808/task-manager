@@ -1,0 +1,11 @@
+<div *ngIf="task" class="task-view-wrapper">
+    <h1>Task#{{task.id}}</h1>
+     <p><b>Assigned To:</b> {{task.assigned_name}}</p>
+     <p><b>Priority:</b> {{task.priority}}</p>
+<div *ngIf="task.due_date"><b>Due Date:</b> {{task.due_date.slice(0,10)}}</div>
+<h4 class="mt-3">Task Details</h4>
+     <div class="task-message">
+   {{task.message}}
+     </div>
+
+</div>

@@ -1,0 +1,33 @@
+<div class="task-bard-wrapper">
+  <div class="d-flex justify-content-between mb-5">
+    <h2>Task Board</h2>
+    <div class="d-flex">
+      <label>Sort by</label>
+      <select class="mb-4 ml-2 mr-5" (change)="viewChange($event)">
+        <option *ngFor="let option of sortOptions" [value]="option">
+          {{ option }}
+        </option>
+      </select>
+      <app-search-input (searchAction)="searchList($event)"></app-search-input>
+    </div>
+  </div>
+  <app-task-list-view
+    *ngIf="sortBy == 'Due Date'"
+    (openDeleteModal)="openModal($event)"
+    [taskList]="filteredTask"
+  >
+  </app-task-list-view>
+  <app-task-piority-view
+    *ngIf="sortBy == 'Priority'"
+    (openDeleteModal)="openModal($event)"
+    [taskList]="filteredTask"
+  ></app-task-piority-view>
+
+  <app-modal
+    #modal
+    [title]="'Confirmation'"
+    [dialog]="modalDialog"
+    (confirmFun)="deleteTask()"
+    [buttonText]="buttonText"
+  ></app-modal>
+</div>

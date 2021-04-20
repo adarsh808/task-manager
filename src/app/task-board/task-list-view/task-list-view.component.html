@@ -1,0 +1,10 @@
+<div class="task-list">
+  <div class="row">
+      <div *ngFor="let task of taskList" class="col-sm-4 mb-3">
+        <app-task-card
+          (openModal)="openModal($event)"
+          [task]="task"
+        ></app-task-card>
+      </div>
+  </div>
+</div>
