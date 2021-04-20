@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren: () =>
       import("./view-task/view-task.module").then((m) => m.ViewTaskModule),
   },
-  { path: " ", redirectTo: "/create-task" },
+  { path: '', redirectTo: "/create-task",pathMatch:"full" },
 ];
 
 @NgModule({
